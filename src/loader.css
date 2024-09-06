@@ -1,0 +1,47 @@
+.Loader {
+  --size: 80px;
+  --speed: 1.4s;
+  --stroke: 5px;
+  --bg-opacity: 0.1;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: var(--stroke);
+  width: var(--size);
+  border-radius: calc(var(--stroke) / 2);
+  overflow: hidden;
+  transform: translate3d(0, 0, 0);
+}
+
+.uibLoader::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  opacity: var(--bg-opacity);
+  transition: background-color 0.3s ease;
+  @apply bg-black dark:bg-white;
+}
+
+.uibLoader::after {
+  content: "";
+  height: 100%;
+  width: 100%;
+  border-radius: calc(var(--stroke) / 2);
+  animation: zoom var(--speed) ease-in-out infinite;
+  transform: translateX(-100%);
+  transition: background-color 0.3s ease;
+  @apply bg-black dark:bg-white;
+}
+
+@keyframes zoom {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}

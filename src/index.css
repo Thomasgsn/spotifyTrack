@@ -1,0 +1,58 @@
+@import url(loader.css);
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  overflow: hidden;
+}
+
+nav {
+  button.bg {
+    @apply hover:scale-110 bg-[#f1f1f1] dark:bg-[#1f1f1f] h-3/5 w-[36.95px] rounded-full flex items-center justify-center;
+
+    svg {
+      @apply text-slate-950 dark:text-[#b3b3b3];
+    }
+  }
+}
+
+main {
+  .container {
+    @apply h-screen bg-[#121212] rounded-lg p-4;
+
+    a,
+    p,
+    h1,
+    h2,
+    h3,
+    h4,
+    svg {
+      @apply text-slate-950 dark:text-[#b3b3b3];
+    }
+
+    .UserTopBtn {
+      @apply flex gap-2 my-4 p-3 justify-between items-center w-full h-20 dark:bg-[#121212] dark:hover:bg-[#1f1f1f] rounded-md cursor-pointer;
+
+      &.active {
+        @apply dark:bg-[#2a2a2a] hover:dark:bg-[#484848];
+      }
+
+      img {
+        @apply w-16 h-16 object-cover rounded-md;
+      }
+
+      h1 {
+        @apply text-lg font-semibold;
+      }
+    }
+
+    .termBtn {
+      @apply w-full h-16 mt-4 flex justify-between;
+      button {
+        @apply h-full w-[30%] border border-[#2a2a2a] rounded-lg flex items-center justify-center;
+      }
+    }
+  }
+}
