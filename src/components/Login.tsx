@@ -36,21 +36,18 @@ export const Login = ({
     window.localStorage.removeItem("token");
   };
 
-  return (
-    <div className="-translate-x-4 h-3/5 px-4 text-xl rounded-full border text-slate-950 dark:text-[#b3b3b3]">
-      {!token ? (
-        <a
-          href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}&scope=${encodeURIComponent(
-            SCOPES
-          )}`}
-        >
-          Login to Spotify
-        </a>
-      ) : (
-        <button onClick={logout}>
-          <p>Logout</p>
-        </button>
-      )}
-    </div>
+  return !token ? (
+    <a
+      className="login__logout"
+      href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}&scope=${encodeURIComponent(
+        SCOPES
+      )}`}
+    >
+      Login to Spotify
+    </a>
+  ) : (
+    <button className="login__logout" onClick={logout}>
+      Logout
+    </button>
   );
 };

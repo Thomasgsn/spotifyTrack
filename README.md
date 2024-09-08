@@ -5,11 +5,17 @@ SpotifyTrack
  - [Spotify API](https://developer.spotify.com/documentation/web-api)
 
 TODO: https://api.spotify.com/v1/me/player avec duration_ms
+TODO: home page
+TODO: artist image on track page
+
+FIXME: long_term artistTop issue
+FIXME: add catch error to all api requests
+FIXME: all track are n°1 of the album
 
 Thomas's Template
 ======================
 
-# React + Vite + TailwindCss + Lucide Icon
+# React + Vite + TailwindCss + React Icon
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
@@ -23,7 +29,7 @@ Currently, two official plugins are available:
 - [React Docs](https://react.dev/learn)
 - [Vite Docs](https://vitejs.dev/guide/)
 - [Tailwind Docs](https://tailwindcss.com/docs/installation)
-- [Lucide Icons Docs](https://lucide.dev/icons/)
+- [React Icons Docs](https://react-icons.github.io/react-icons/)
 
 # How to use
 

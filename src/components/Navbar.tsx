@@ -4,7 +4,6 @@ import { GoHome } from "react-icons/go";
 import { RiUser3Line } from "react-icons/ri";
 import { ThemeToggler } from "./ThemeToggler";
 import { Dispatch, SetStateAction } from "react";
-import { HiOutlineDotsHorizontal } from "react-icons/hi";
 
 interface Props {
   token: string;
@@ -15,7 +14,7 @@ interface Props {
   RESPONSE_TYPE: string;
   SCOPES: string;
   setToken: (value: string) => void;
-  setSelected: Dispatch<SetStateAction<"none" | "tracks" | "artists">>;
+  setSelected: Dispatch<SetStateAction<"topTracks" | "topArtists" | "recentTracks" | "home" | "artist" | "track" | "album">>;
 }
 
 export const Navbar = ({
@@ -30,9 +29,9 @@ export const Navbar = ({
   setSelected,
 }: Props) => {
   return (
-    <nav className="z-50 fixed top-0 w-screen h-14 bg-slate-100 dark:bg-black flex items-center justify-between">
+    <nav className="z-50 fixed top-0 w-screen h-14 flex items-center justify-between">
       <ThemeToggler />
-      <button onClick={() => setSelected("none")} className="bg">
+      <button onClick={() => setSelected("home")} className="bg">
         <GoHome size={20} />
       </button>
       <div className="flex items-center justify-start h-full">

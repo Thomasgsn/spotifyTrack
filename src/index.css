@@ -1,4 +1,5 @@
 @import url(loader.css);
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
 
 @tailwind base;
 @tailwind components;
@@ -6,21 +7,38 @@
 
 * {
   overflow: hidden;
+  margin: 0;
+  padding: 0;
+  font-family: Montserrat, sans-serif;
+
+  ::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.clickable {
+  @apply cursor-pointer;
 }
 
 nav {
+  @apply bg-white dark:bg-black;
+
   button.bg {
-    @apply hover:scale-110 bg-[#f1f1f1] dark:bg-[#1f1f1f] h-3/5 w-[36.95px] rounded-full flex items-center justify-center;
+    @apply hover:scale-110 bg-[#fefefe] dark:bg-[#1f1f1f] h-3/5 w-[36.95px] rounded-full flex items-center justify-center;
 
     svg {
-      @apply text-slate-950 dark:text-[#b3b3b3];
+      @apply text-textLight dark:text-textDark;
     }
+  }
+
+  .login__logout {
+    @apply -translate-x-4 h-3/5 px-4 text-xl rounded-full border text-[#fefefe] dark:text-[#1f1f1f] dark:border-[#1f1f1f] dark:hover:text-[#343434] dark:hover:border-[#343434];
   }
 }
 
 main {
   .container {
-    @apply h-screen bg-[#121212] rounded-lg p-4;
+    @apply h-screen bg-bgLight dark:bg-bgDark rounded-lg p-4;
 
     a,
     p,
@@ -28,12 +46,25 @@ main {
     h2,
     h3,
     h4,
-    svg {
-      @apply text-slate-950 dark:text-[#b3b3b3];
+    svg,
+    span,
+    li {
+      @apply text-black dark:text-white;
+    }
+
+    .spotify__btn {
+      @apply bg-spotifyGreen rounded-full flex justify-center items-center;
+      svg {
+        @apply text-bgLight fill-bgLight dark:text-bgDark dark:fill-bgDark !important;
+      }
+    }
+
+    .spotify__svg {
+      @apply text-spotifyGreen fill-spotifyGreen !important;
     }
 
     .UserTopBtn {
-      @apply flex gap-2 my-4 p-3 justify-between items-center w-full h-20 dark:bg-[#121212] dark:hover:bg-[#1f1f1f] rounded-md cursor-pointer;
+      @apply flex gap-2 my-4 p-3 justify-between items-center w-full h-20 dark:bg-[#121212] dark:hover:bg-[#1f1f1f] rounded-md cursor-pointer transition-colors;
 
       &.active {
         @apply dark:bg-[#2a2a2a] hover:dark:bg-[#484848];
@@ -48,10 +79,38 @@ main {
       }
     }
 
-    .termBtn {
-      @apply w-full h-16 mt-4 flex justify-between;
-      button {
-        @apply h-full w-[30%] border border-[#2a2a2a] rounded-lg flex items-center justify-center;
+    .container__mid {
+      @apply w-36 h-36 object-cover rounded-md m-2 bg-cover flex flex-col hover:opacity-50 items-center justify-center;
+
+      div {
+        @apply bg-black/75 opacity-0 px-2 py-1 rounded-lg flex items-center flex-col transition-opacity;
+
+        p {
+          @apply transition-none text-[#b3b3b3] !important;
+        }
+      }
+    }
+
+    &.container__right {
+      .term__btn,
+      .list__btn {
+        @apply w-full h-16 mt-4 flex justify-between;
+
+        button {
+          @apply h-full w-full mx-2 border border-[#2a2a2a] rounded-lg flex items-center justify-center;
+
+          &.active {
+            @apply dark:bg-[#2a2a2a] hover:dark:bg-[#484848];
+          }
+        }
+      }
+
+      .current__track__name {
+        @apply text-2xl font-bold hover:underline max-w-96 text-black dark:text-white;
+      }
+
+      .coche {
+        @apply text-bgLight dark:text-bgDark !important;
       }
     }
   }
