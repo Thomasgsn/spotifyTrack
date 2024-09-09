@@ -80,6 +80,7 @@ export const Main = ({
       return <AlbumInfo {...{ setID, ID, token }} />;
 
     default:
+      return (<p>BUG ??</p>)
       break;
   }
 };

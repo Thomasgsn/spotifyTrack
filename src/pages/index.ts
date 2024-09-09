@@ -1,6 +1,7 @@
 export * from './AlbumInfo'
 export * from './ArtistInfo'
 export * from './Home'
+export * from './PleaseLogin'
 export * from './RecentTracks'
 export * from './TopArtists'
 export * from './TopTracks'

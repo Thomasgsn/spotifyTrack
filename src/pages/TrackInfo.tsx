@@ -35,7 +35,7 @@ export const TrackInfo = ({
 }: Props) => {
   const [track, setTrack] = useState<Track | null>(null);
   const [features, setFeatures] = useState<TrackFeatures | null>(null);
-  const [saved, setSaved] = useState<boolean>();
+  const [saved, setSaved] = useState<boolean>(false);
 
   useEffect(() => {
     const findTrack = async () => {
@@ -48,18 +48,6 @@ export const TrackInfo = ({
         }
       );
       setTrack(data);
-    };
-
-    const findTrackFeatures = async () => {
-      const { data } = await axios.get(
-        `https://api.spotify.com/v1/audio-features/${ID}`,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-      setFeatures(data);
     };
 
     const checkIfTrackIsSaved = async () => {
@@ -81,8 +69,21 @@ export const TrackInfo = ({
       }
     };
 
+    const findTrackFeatures = async () => {
+      const { data } = await axios.get(
+        `https://api.spotify.com/v1/audio-features/${ID}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      setFeatures(data);
+    };
+
     if (ID) {
       findTrack();
+      checkIfTrackIsSaved();
       findTrackFeatures();
     }
   }, [ID, token]);
@@ -123,11 +124,29 @@ export const TrackInfo = ({
 
   const saveTrack = async () => {
     try {
-      await axios.put(`https://api.spotify.com/v1/me/tracks?${ID}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      await axios.put(
+        `https://api.spotify.com/v1/me/tracks?ids=${ID}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+    } catch (error) {
+      console.error("Error :", error);
+    }
+  };
+  
+  const unsaveTrack = async () => {
+    try {
+      await axios.delete(
+        `https://api.spotify.com/v1/me/tracks?ids=${ID}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
     } catch (error) {
       console.error("Error :", error);
     }
@@ -136,6 +155,11 @@ export const TrackInfo = ({
   const handleSave = () => {
     saveTrack();
     setSaved(true);
+  };
+
+  const handleUnsave = () => {
+    unsaveTrack();
+    setSaved(false);
   };
 
   const togglePlayback = async () => {
@@ -207,12 +231,12 @@ export const TrackInfo = ({
                 {saved ? (
                   <RiCheckboxCircleFill
                     size={30}
-                    onClick={() => setSaved(false)}
+                    onClick={handleUnsave}
                     className="spotify__svg hover:scale-105 cursor-pointer"
                   />
                 ) : (
                   <TbCirclePlus
-                    onClick={() => setSaved(true)}
+                    onClick={handleSave}
                     size={30}
                     className="opacity-75 hover:opacity-100 cursor-pointer hover:scale-105"
                   />

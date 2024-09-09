@@ -80,7 +80,7 @@ main {
     }
 
     .container__mid {
-      @apply w-36 h-36 object-cover rounded-md m-2 bg-cover flex flex-col hover:opacity-50 items-center justify-center;
+      @apply w-32 h-32 object-cover rounded-md m-2 bg-cover flex flex-col hover:opacity-50 items-center justify-center;
 
       div {
         @apply bg-black/75 opacity-0 px-2 py-1 rounded-lg flex items-center flex-col transition-opacity;
@@ -98,6 +98,10 @@ main {
 
         button {
           @apply h-full w-full mx-2 border border-[#2a2a2a] rounded-lg flex items-center justify-center;
+
+          p{
+            font-size: 1vw;
+          }
 
           &.active {
             @apply dark:bg-[#2a2a2a] hover:dark:bg-[#484848];

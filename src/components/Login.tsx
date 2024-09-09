@@ -33,7 +33,6 @@ export const Login = ({
 
   const logout = () => {
     setToken("");
-    window.localStorage.removeItem("token");
   };
 
   return !token ? (
@@ -41,7 +40,7 @@ export const Login = ({
       className="login__logout"
       href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}&scope=${encodeURIComponent(
         SCOPES
-      )}`}
+      )}&show_dialog=true`}
     >
       Login to Spotify
     </a>

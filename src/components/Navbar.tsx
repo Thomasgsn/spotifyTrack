@@ -7,7 +7,7 @@ import { Dispatch, SetStateAction } from "react";
 
 interface Props {
   token: string;
-  userData: UserData;
+  userData: UserData | undefined;
   AUTH_ENDPOINT: string;
   CLIENT_ID: string;
   REDIRECT_URI: string;
@@ -46,11 +46,11 @@ export const Navbar = ({
             setToken,
           }}
         />
-        {token ? (
+        {token && userData ? (
           <button className="bg">
             <img
-              src={userData.img}
-              alt={`${userData.name} Spotify Profile Picture`}
+              src={userData.images[0].url}
+              alt={`${userData.display_name} Spotify Profile Picture`}
               className="h-[70%] w-[70%] rounded-full"
             />
           </button>

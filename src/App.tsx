@@ -1,3 +1,4 @@
+import { PleaseLogin } from "@/pages/index";
 import { useEffect, useState } from "react";
 import { Navbar } from "@/components/index";
 import { UserData, Track, Artist, RecentTrack, Loader } from "./utils";
@@ -15,12 +16,7 @@ const App = () => {
 
   const [token, setToken] = useState<string>("");
 
-  const [userData, setUserData] = useState<UserData>({
-    id: "",
-    name: "",
-    img: "",
-    country: "",
-  });
+  const [userData, setUserData] = useState<UserData>();
 
   const [userTopTracks, setUserTopTracks] = useState<Track[]>([]);
   const [userTopArtists, setUserTopArtists] = useState<Artist[]>([]);
@@ -31,7 +27,7 @@ const App = () => {
   const [duration, setDuration] = useState<"short" | "medium" | "long">(
     "short"
   );
-  const [list, setList] = useState<"square" | "rectangle">("rectangle");
+  const [list, setList] = useState<"square" | "rectangle">("square");
   const [selected, setSelected] = useState<
     | "topTracks"
     | "topArtists"
@@ -43,19 +39,16 @@ const App = () => {
   >("topTracks");
   const [ID, setID] = useState<string | null>(null);
 
-  const findUserData = async () => {
-    const { data } = await axios.get("https://api.spotify.com/v1/me", {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
-    setUserData((prev) => ({ ...prev, id: data.id }));
-    setUserData((prev) => ({ ...prev, name: data.display_name }));
-    setUserData((prev) => ({ ...prev, img: data.images[1].url }));
-    setUserData((prev) => ({ ...prev, country: data.country }));
-  };
-
   useEffect(() => {
+    const findUserData = async () => {
+      const { data } = await axios.get("https://api.spotify.com/v1/me", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      setUserData(data);
+    };
+
     const findUserTopTracks = async () => {
       const { data } = await axios.get(
         `https://api.spotify.com/v1/me/top/tracks?time_range=${duration}_term&limit=50`,
@@ -204,7 +197,17 @@ const App = () => {
             </div>
           </>
         ) : (
-          <h1>Please Login !</h1>
+          <div className="container w-screen">
+            <PleaseLogin
+              {...{
+                CLIENT_ID,
+                REDIRECT_URI,
+                AUTH_ENDPOINT,
+                RESPONSE_TYPE,
+                SCOPES,
+              }}
+            />
+          </div>
         )}
       </main>
     </>
