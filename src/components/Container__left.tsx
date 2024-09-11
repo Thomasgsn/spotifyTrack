@@ -36,7 +36,7 @@ export const Container__left = ({
     }, [userTopTracks, userTopArtists]);
 
     if (topTrack)
-      return <p className="opacity-75 hover:underline">{topTrack.name}</p>;
+      return <p className="opacity-75 hover:underline whitespace-nowrap">{topTrack.name}</p>;
 
     return <Loader />;
   };
@@ -56,10 +56,10 @@ export const Container__left = ({
           <div className="flex items-center gap-2">
             <img src={userTopTracks[0].album.images[0].url} />
             <div className="flex flex-col items-start">
-              <h1>{userTopTracks[0].name}</h1>
+              <h1 className="whitespace-nowrap">{userTopTracks[0].name}</h1>
               <div className="flex">
                 {userTopTracks[0].artists.map((a, i) => (
-                  <p key={i} className="opacity-75 hover:underline">
+                  <p key={i} className="opacity-75 hover:underline whitespace-nowrap">
                     {a.name}
                     {userTopTracks[0].artists.length != i + 1 && (
                       <span className="mr-1">,</span>
@@ -86,7 +86,7 @@ export const Container__left = ({
           <div className="flex items-center gap-2">
             <img src={userTopArtists[0].images[0].url} />
             <div>
-              <h1>{userTopArtists[0].name}</h1>
+              <h1 className="whitespace-nowrap">{userTopArtists[0].name}</h1>
               <div className="flex">
                 <SongOfFirstArtist />
               </div>
@@ -109,10 +109,10 @@ export const Container__left = ({
           <div className="flex items-center gap-2">
             <img src={userRecentTracks[0].track.album.images[0].url} />
             <div className="flex flex-col items-start">
-              <h1>{userRecentTracks[0].track.name}</h1>
+              <h1 className="whitespace-nowrap">{userRecentTracks[0].track.name}</h1>
               <div className="flex">
                 {userRecentTracks[0].track.artists.map((a, i) => (
-                  <p key={i} className="opacity-75 hover:underline">
+                  <p key={i} className="opacity-75 hover:underline whitespace-nowrap">
                     {a.name}
                     {userRecentTracks[0].track.artists.length != i + 1 && (
                       <span className="mr-1">,</span>

@@ -32,6 +32,7 @@ interface Props {
   setIsPlaying: Dispatch<SetStateAction<boolean | undefined>>;
   userCurrentTrack: Track | undefined;
   setUserCurrentTrack: Dispatch<SetStateAction<Track | undefined>>;
+  list: string;
 }
 
 export const Main = ({
@@ -47,16 +48,17 @@ export const Main = ({
   setIsPlaying,
   userCurrentTrack,
   setUserCurrentTrack,
+  list,
 }: Props) => {
   switch (selected) {
     case "topTracks":
-      return <TopTracks {...{ userTopTracks, setID, setSelected }} />;
+      return <TopTracks {...{ userTopTracks, setID, setSelected, list }} />;
 
     case "topArtists":
-      return <TopArtists {...{ userTopArtists, setID, setSelected }} />;
+      return <TopArtists {...{ userTopArtists, setID, setSelected, list }} />;
 
     case "recentTracks":
-      return <RecentTracks {...{ userRecentTracks, setID, setSelected }} />;
+      return <RecentTracks {...{ userRecentTracks, setID, setSelected, list }} />;
 
     case "artist":
       return <ArtistInfo {...{ setID, ID, token }} />;

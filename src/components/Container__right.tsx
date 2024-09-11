@@ -1,9 +1,9 @@
 import { Track } from "@/utils";
 import { FiSquare } from "react-icons/fi";
+import { CiBoxList } from "react-icons/ci";
 import { Dispatch, SetStateAction } from "react";
 import { IoSettingsOutline } from "react-icons/io5";
 import { LuRectangleHorizontal } from "react-icons/lu";
-import { TbCirclePlus } from "react-icons/tb";
 import { RiCheckboxCircleFill } from "react-icons/ri";
 interface Props {
   setDuration: Dispatch<SetStateAction<"short" | "medium" | "long">>;
@@ -51,23 +51,44 @@ export const Container__right = ({
         <h2 className="font-bold text-md">Settings :</h2>
       </div>
       <div className="term__btn">
-        <button
-          onClick={() => setDuration("long")}
-          className={`${duration === "long" && "active"}`}
-        >
-          <p>1 year</p>
+        <button onClick={() => setDuration("long")}>
+          <div className="flex items-center justify-between">
+            <h3>1 YEAR</h3>
+            {duration === "long" ? (
+              <RiCheckboxCircleFill
+                size={24}
+                className="spotify__svg hover:scale-105 cursor-pointer"
+              />
+            ) : (
+              <div className="h-6 w-6 rounded-full bg-[#2c2c2c] border-2 border-white/50"></div>
+            )}
+          </div>
         </button>
-        <button
-          onClick={() => setDuration("medium")}
-          className={`${duration === "medium" && "active"}`}
-        >
-          <p>6 months</p>
+        <button onClick={() => setDuration("medium")}>
+          <div className="flex items-center justify-between">
+            <h3>6 MONTHS</h3>
+            {duration === "medium" ? (
+              <RiCheckboxCircleFill
+                size={24}
+                className="spotify__svg hover:scale-105 cursor-pointer"
+              />
+            ) : (
+              <div className="h-6 w-6 rounded-full bg-[#2c2c2c] border-2 border-white/50"></div>
+            )}
+          </div>
         </button>
-        <button
-          onClick={() => setDuration("short")}
-          className={`${duration === "short" && "active"}`}
-        >
-          <p>4 weeks</p>
+        <button onClick={() => setDuration("short")}>
+          <div className="flex items-center justify-between">
+            <h3>4 WEEKS</h3>
+            {duration === "short" ? (
+              <RiCheckboxCircleFill
+                size={24}
+                className="spotify__svg hover:scale-105 cursor-pointer"
+              />
+            ) : (
+              <div className="h-6 w-6 rounded-full bg-[#2c2c2c] border-2 border-white/50"></div>
+            )}
+          </div>
         </button>
       </div>
       <div className="list__btn">
@@ -90,12 +111,7 @@ export const Container__right = ({
           className={`${list === "rectangle" && "active"}`}
         >
           <div>
-            <FiSquare />
-            <FiSquare />
-          </div>
-          <div className="overflow-visible translate-x-1">
-            <LuRectangleHorizontal className="scale-x-150 scale-y-75" />
-            <LuRectangleHorizontal className="scale-x-150 scale-y-75" />
+            <CiBoxList size={32} />
           </div>
         </button>
       </div>

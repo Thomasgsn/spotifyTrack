@@ -1,6 +1,6 @@
 import { Track } from "@/utils";
 import { Dispatch, SetStateAction } from "react";
-import { DisplayTracks } from "@/fonctionnal/index";
+import { MainDisplay } from "@/fonctionnal/index";
 
 interface Props {
   userTopTracks: Track[];
@@ -16,13 +16,9 @@ interface Props {
       | "album"
     >
   >;
+  list: string;
 }
 
-export const TopTracks = ({ userTopTracks, setID, setSelected }: Props) => {
-  const setTrack = (id: string) => {
-    setID(id);
-    setSelected("track");
-  };
-
-  return <DisplayTracks tracks={userTopTracks} setTrack={setTrack} />;
+export const TopTracks = ({ userTopTracks, setID, setSelected, list }: Props) => {
+  return <MainDisplay type='tracks' data={userTopTracks} {...{setID, setSelected, list}} />;
 };

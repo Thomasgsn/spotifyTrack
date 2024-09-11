@@ -1,3 +1,4 @@
+import { LuAlbum, LuArrowUpNarrowWide, LuInfo } from "react-icons/lu";
 import { BsThreeDots } from "react-icons/bs";
 import { TbCirclePlus } from "react-icons/tb";
 import { RiCheckboxCircleFill } from "react-icons/ri";
@@ -124,29 +125,23 @@ export const TrackInfo = ({
 
   const saveTrack = async () => {
     try {
-      await axios.put(
-        `https://api.spotify.com/v1/me/tracks?ids=${ID}`,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+      await axios.put(`https://api.spotify.com/v1/me/tracks?ids=${ID}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
     } catch (error) {
       console.error("Error :", error);
     }
   };
-  
+
   const unsaveTrack = async () => {
     try {
-      await axios.delete(
-        `https://api.spotify.com/v1/me/tracks?ids=${ID}`,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+      await axios.delete(`https://api.spotify.com/v1/me/tracks?ids=${ID}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
     } catch (error) {
       console.error("Error :", error);
     }
@@ -212,60 +207,88 @@ export const TrackInfo = ({
                     )}
                   </p>
                 ))}
+                <p className="ml-1 opacity-75">· {formatDurationMs(track.duration_ms)}</p>
               </div>
             </div>
           </div>
           <div>
-            <div className="w-full mt-5 flex items-center gap-4">
-              <button
-                className="w-14 h-14 spotify__btn"
-                onClick={togglePlayback}
-              >
-                {userCurrentTrack?.id === ID && isPlaying ? (
-                  <GrPauseFill className="PlayPause__btn" />
-                ) : (
-                  <GrPlayFill className="PlayPause__btn" />
-                )}
-              </button>
-              <div className="flex items-center gap-2 overflow-visible">
-                {saved ? (
-                  <RiCheckboxCircleFill
-                    size={30}
-                    onClick={handleUnsave}
-                    className="spotify__svg hover:scale-105 cursor-pointer"
-                  />
-                ) : (
-                  <TbCirclePlus
-                    onClick={handleSave}
-                    size={30}
-                    className="opacity-75 hover:opacity-100 cursor-pointer hover:scale-105"
-                  />
-                )}
+            <div>
+              <div className="h-[60px] mt-5 flex items-center justify-between">
+                <div className="flex items-center gap-4">
+                  <button
+                    className="w-14 h-14 spotify__btn"
+                    onClick={togglePlayback}
+                  >
+                    {userCurrentTrack?.id === ID && isPlaying ? (
+                      <GrPauseFill className="PlayPause__btn" />
+                    ) : (
+                      <GrPlayFill className="PlayPause__btn" />
+                    )}
+                  </button>
+                  <div className="flex items-center gap-2 overflow-visible">
+                    {saved ? (
+                      <RiCheckboxCircleFill
+                        size={30}
+                        onClick={handleUnsave}
+                        className="spotify__svg hover:scale-105 cursor-pointer"
+                      />
+                    ) : (
+                      <TbCirclePlus
+                        onClick={handleSave}
+                        size={30}
+                        className="opacity-75 hover:opacity-100 cursor-pointer hover:scale-105"
+                      />
+                    )}
 
-                <BsThreeDots
-                  size={28}
-                  className="opacity-75 hover:scale-105 cursor-pointer"
-                />
-              </div>
-              <p>{ID}</p>
-              <ul>
-                <li>
-                  track n°{track.disc_number} of {track.album.name}
-                </li>
-                <li>{track.explicit && Parental_advisory("h-20")}</li>
-                <li>{track.popularity} / 100 of popularity</li>
-                <li>
-                  <div className="flex gap-2 group cursor-alias">
-                    <p>see id</p>
-                    <p className="hidden group-hover:block">{track.id}</p>
+                    <BsThreeDots
+                      size={28}
+                      className="opacity-75 hover:scale-105 cursor-pointer"
+                    />
                   </div>
-                </li>
+                </div>
+                <p>
+                  {track.explicit && Parental_advisory("h-20 overflow-hidden")}
+                </p>
+              </div>
+              <div className="mt-6">
+                <div className="data">
+                  <LuAlbum className="stroke-spotifyGreen" size={20} />
+                  <p>
+                    track n°{track.disc_number} of {track.album.name}
+                  </p>
+                </div>
+                <div className="data">
+                  <LuAlbum className="stroke-spotifyGreen" size={20} />
+                  <p>{formatDurationMs(track.duration_ms)}</p>
+                  <p>{getPitch(features.key)}</p>
+                  <p>{features.tempo.toPrecision(3)} bpm</p>
+                </div>
+                <div className="data">
+                  <LuArrowUpNarrowWide
+                    className="stroke-spotifyGreen"
+                    size={20}
+                  />
+                  <p>{track.popularity} / 100 of popularity</p>
+                </div>
+                <div className="data gap-2 group cursor-alias">
+                  <LuInfo className="stroke-spotifyGreen" size={20} />{" "}
+                  <p>see id</p>
+                  <p className="hidden group-hover:block">{track.id}</p>
+                </div>
+                <div className="data">
+                  <LuAlbum className="stroke-spotifyGreen" size={20} />{" "}
+                  <p>
+                    track n°{track.disc_number} of {track.album.name}
+                  </p>
+                </div>
+              </div>
+              <ul>
                 <li>
                   <a href={track.external_urls.spotify} target="blank">
                     link
                   </a>
                 </li>
-                <li>{formatDurationMs(track.duration_ms)}</li>
+                <li></li>
                 <li>{getPitch(features.key)}</li>
                 <li>{features.tempo.toPrecision(3)} bpm</li>
               </ul>

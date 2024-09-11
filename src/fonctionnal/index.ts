@@ -1,1 +1,1 @@
-export * from './DisplayTrack'
+export * from './MainDisplay'

@@ -29,8 +29,7 @@ export const ArtistInfo = ({ setID, ID, token }: Props) => {
 
   return (
     <>
-      <div className=" bg-white w-full"></div>
-      <div></div>
+      <div className=" bg-white w-full">{artist && <p>artist.name</p>}</div>
     </>
   );
 };

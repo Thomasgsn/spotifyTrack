@@ -17,7 +17,6 @@ const App = () => {
   const [token, setToken] = useState<string>("");
 
   const [userData, setUserData] = useState<UserData>();
-
   const [userTopTracks, setUserTopTracks] = useState<Track[]>([]);
   const [userTopArtists, setUserTopArtists] = useState<Artist[]>([]);
   const [userCurrentTrack, setUserCurrentTrack] = useState<Track>();
@@ -177,6 +176,7 @@ const App = () => {
                     setIsPlaying,
                     userCurrentTrack,
                     setUserCurrentTrack,
+                    list,
                   }}
                 />
               </div>

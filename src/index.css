@@ -80,7 +80,16 @@ main {
     }
 
     .container__mid {
-      @apply w-32 h-32 object-cover rounded-md m-2 bg-cover flex flex-col hover:opacity-50 items-center justify-center;
+      @apply object-cover rounded-md m-2 bg-cover flex flex-col items-center justify-center;
+
+      &.square,
+      &.lowSquare {
+        @apply w-32 h-32 hover:opacity-50;
+      }
+
+      &.rectangle {
+        @apply w-28 h-28;
+      }
 
       div {
         @apply bg-black/75 opacity-0 px-2 py-1 rounded-lg flex items-center flex-col transition-opacity;
@@ -92,19 +101,27 @@ main {
     }
 
     &.container__right {
-      .term__btn,
-      .list__btn {
-        @apply w-full h-16 mt-4 flex justify-between;
-
+      .term__btn {
+        @apply flex justify-between mt-3;
         button {
-          @apply h-full w-full mx-2 border border-[#2a2a2a] rounded-lg flex items-center justify-center;
+          @apply bg-bgLight dark:bg-[#212121] p-2 rounded-md w-[30%];
 
-          p{
-            font-size: 1vw;
+          h3 {
+            @apply text-bgLight dark:text-[#b3b3b3] text-[.6vw] font-bold;
           }
+        }
+      }
+      .list__btn {
+        @apply flex justify-start gap-3 mt-3;
+        button {
+          @apply bg-bgLight dark:bg-[#212121] p-2 rounded-md;
 
           &.active {
-            @apply dark:bg-[#2a2a2a] hover:dark:bg-[#484848];
+            @apply bg-white dark:bg-[#313131];
+          }
+
+          div {
+            @apply flex;
           }
         }
       }
@@ -117,5 +134,9 @@ main {
         @apply text-bgLight dark:text-bgDark !important;
       }
     }
+  }
+
+  .data {
+    @apply flex gap-2 items-center bg-white dark:bg-[#212121] p-2 mb-2 rounded-md;
   }
 }

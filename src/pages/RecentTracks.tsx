@@ -1,6 +1,6 @@
 import { RecentTrack, Track } from "@/utils";
 import { Dispatch, SetStateAction } from "react";
-import { DisplayTracks } from "@/fonctionnal/index";
+import { MainDisplay } from "@/fonctionnal/index";
 
 interface Props {
   userRecentTracks: RecentTrack[];
@@ -16,12 +16,14 @@ interface Props {
       | "album"
     >
   >;
+  list: string;
 }
 
 export const RecentTracks = ({
   userRecentTracks,
   setID,
   setSelected,
+  list,
 }: Props) => {
   const setTrack = (id: string) => {
     setID(id);
@@ -31,8 +33,6 @@ export const RecentTracks = ({
   const recentTracks: Track[] = userRecentTracks.map((t) => t.track);
 
   return (
-    <>
-      <DisplayTracks tracks={recentTracks} setTrack={setTrack} />
-    </>
+      <MainDisplay type='tracks' data={recentTracks} {...{setID, setSelected, list}} />
   );
 };
