@@ -5,11 +5,9 @@ export default {
   theme: {
     extend: {
       colors: {
-        spotifyGreen: '#3ae176',
-        bgDark: "#121212",
-        textDark: "#b3b3b3",
-        bgLight: "#f1f5f9",
-        textLight: "#030712",
+        spotifyGreen: '#1DB954',
+        darkColor: "#191414",
+        lightColor: "#FFFFFF",
       },
     },
   },

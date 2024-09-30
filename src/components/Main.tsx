@@ -1,5 +1,5 @@
-import { Track, Artist, RecentTrack } from "@/utils";
 import { Dispatch, SetStateAction } from "react";
+import { Track, Artist, RecentTrack } from "@/utils";
 import {
   TopTracks,
   TopArtists,
@@ -7,6 +7,7 @@ import {
   TrackInfo,
   AlbumInfo,
   RecentTracks,
+  Home,
 } from "@/pages/index";
 
 interface Props {
@@ -80,6 +81,9 @@ export const Main = ({
 
     case "album":
       return <AlbumInfo {...{ setID, ID, token }} />;
+
+    case "home":
+      return <Home />;
 
     default:
       return (<p>BUG ??</p>)

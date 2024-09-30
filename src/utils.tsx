@@ -1,31 +1,30 @@
 export interface UserData {
-  country: string,
-  display_name: string,
-  email: string,
+  country: string;
+  display_name: string;
+  email: string;
   explicit_content: {
-    filter_enabled: boolean,
-    filter_locked: boolean
-  },
+    filter_enabled: boolean;
+    filter_locked: boolean;
+  };
   external_urls: {
-    spotify: string
-  },
+    spotify: string;
+  };
   followers: {
-    href: string,
-    total: number
-  },
-  href: string,
-  id: string,
+    href: string;
+    total: number;
+  };
+  href: string;
+  id: string;
   images: [
     {
-      url: string,
-      height: number,
-      width: number
+      url: string;
+      height: number;
+      width: number;
     }
-  ],
-  product: string,
-  type: string,
-  uri: string
-
+  ];
+  product: string;
+  type: string;
+  uri: string;
 }
 
 export interface Track {
@@ -326,7 +325,19 @@ export interface TrackFeatures {
 }
 
 export const Loader = () => {
-  return <div className="Loader"></div>;
+  return (
+    <div className="Loader">
+      <div className="cube">
+        <div className="cube__inner"></div>
+      </div>
+      <div className="cube">
+        <div className="cube__inner"></div>
+      </div>
+      <div className="cube">
+        <div className="cube__inner"></div>
+      </div>
+    </div>
+  );
 };
 
 export const formatDurationMs = (durationMs: number) => {

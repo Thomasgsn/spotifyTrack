@@ -14,7 +14,7 @@ const App = () => {
   const SCOPES =
     "user-library-read user-read-private user-read-email user-top-read user-read-currently-playing user-read-playback-state user-read-recently-played user-modify-playback-state playlist-read-private playlist-read-collaborative playlist-modify-public playlist-modify-private streaming app-remote-control user-follow-read user-follow-modify user-read-playback-position user-read-playback-state user-read-email user-read-private";
 
-  const [token, setToken] = useState<string>("");
+  const [token, setToken] = useState<string | null>("");
 
   const [userData, setUserData] = useState<UserData>();
   const [userTopTracks, setUserTopTracks] = useState<Track[]>([]);
@@ -39,7 +39,7 @@ const App = () => {
   const [ID, setID] = useState<string | null>(null);
 
   useEffect(() => {
-    const findUserData = async () => {
+      const findUserData = async () => {
       const { data } = await axios.get("https://api.spotify.com/v1/me", {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -48,7 +48,7 @@ const App = () => {
       setUserData(data);
     };
 
-    const findUserTopTracks = async () => {
+      const findUserTopTracks = async () => {
       const { data } = await axios.get(
         `https://api.spotify.com/v1/me/top/tracks?time_range=${duration}_term&limit=50`,
         {
@@ -108,6 +108,9 @@ const App = () => {
       setIsPlaying(data.is_playing);
     };
 
+    setUserTopTracks([]);
+    setUserTopArtists([]);  
+
     const findInfo = async () => {
       findUserData();
       findUserTopTracks();
@@ -118,7 +121,7 @@ const App = () => {
     };
 
     token && findInfo();
-  }, [token, duration, selected]);
+  }, [token, duration]);
 
   let StyleDivMain;
 
@@ -146,8 +149,8 @@ const App = () => {
           setSelected,
         }}
       />
-      <main className="bg-white dark:bg-black h-[99.99vh] translate-y-14 flex items-center justify-between">
-        {token ? (
+      <main className="h-[99.99vh] bg-white dark:bg-black overflow-hidden translate-y-14 flex items-center justify-between">
+        {token && userData ? (
           <>
             <div className="container w-[24.5%]">
               <Container__left
@@ -160,7 +163,7 @@ const App = () => {
                 }}
               />
             </div>
-            <div className="container h-fit overflow-scroll w-[50%]">
+            <div className="container overflow-scroll w-[50%]">
               <div className={`${StyleDivMain}`} style={{ flexWrap: "wrap" }}>
                 <Main
                   {...{

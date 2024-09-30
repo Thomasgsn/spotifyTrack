@@ -1,9 +1,9 @@
-import { LuAlbum, LuArrowUpNarrowWide, LuInfo } from "react-icons/lu";
-import { BsThreeDots } from "react-icons/bs";
 import { TbCirclePlus } from "react-icons/tb";
 import { RiCheckboxCircleFill } from "react-icons/ri";
 import { GrPlayFill, GrPauseFill } from "react-icons/gr";
+import { BsClipboardData, BsThreeDots } from "react-icons/bs";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
+import { LuAlbum, LuArrowUpNarrowWide, LuInfo } from "react-icons/lu";
 import {
   Track,
   Loader,
@@ -14,6 +14,7 @@ import {
 } from "@/utils";
 
 import axios from "axios";
+import { IoLinkOutline } from "react-icons/io5";
 
 interface Props {
   setID: Dispatch<SetStateAction<string | null>>;
@@ -200,14 +201,16 @@ export const TrackInfo = ({
               <h2 className="text-6xl font-bold mb-1">{track.name}</h2>
               <div className="flex">
                 {track.artists.map((a, i) => (
-                  <p key={i} className="opacity-75 hover:underline clickable">
+                  <p key={i} className=" hover:underline clickable">
                     {a.name}
                     {track.artists.length !== i + 1 && (
                       <span className="mr-1">,</span>
                     )}
                   </p>
                 ))}
-                <p className="ml-1 opacity-75">· {formatDurationMs(track.duration_ms)}</p>
+                <p className="ml-1 opacity-75">
+                  · {formatDurationMs(track.duration_ms)}
+                </p>
               </div>
             </div>
           </div>
@@ -258,10 +261,11 @@ export const TrackInfo = ({
                   </p>
                 </div>
                 <div className="data">
-                  <LuAlbum className="stroke-spotifyGreen" size={20} />
-                  <p>{formatDurationMs(track.duration_ms)}</p>
-                  <p>{getPitch(features.key)}</p>
-                  <p>{features.tempo.toPrecision(3)} bpm</p>
+                  <BsClipboardData className="fill-spotifyGreen" size={20} />
+                  <p>
+                    {getPitch(features.key)} · {features.tempo.toPrecision(3)}{" "}
+                    bpm
+                  </p>
                 </div>
                 <div className="data">
                   <LuArrowUpNarrowWide
@@ -271,28 +275,17 @@ export const TrackInfo = ({
                   <p>{track.popularity} / 100 of popularity</p>
                 </div>
                 <div className="data gap-2 group cursor-alias">
-                  <LuInfo className="stroke-spotifyGreen" size={20} />{" "}
+                  <LuInfo className="stroke-spotifyGreen" size={20} />
                   <p>see id</p>
                   <p className="hidden group-hover:block">{track.id}</p>
                 </div>
-                <div className="data">
-                  <LuAlbum className="stroke-spotifyGreen" size={20} />{" "}
+                <a href={track.external_urls.spotify} target="_blank" className="data gap-2 group cursor-pointer">
+                  <IoLinkOutline className="stroke-spotifyGreen" size={20} />
                   <p>
-                    track n°{track.disc_number} of {track.album.name}
+                    Click here to see the song page
                   </p>
-                </div>
+                </a>
               </div>
-              <ul>
-                <li>
-                  <a href={track.external_urls.spotify} target="blank">
-                    link
-                  </a>
-                </li>
-                <li></li>
-                <li>{getPitch(features.key)}</li>
-                <li>{features.tempo.toPrecision(3)} bpm</li>
-              </ul>
-              ;
             </div>
           </div>
         </>

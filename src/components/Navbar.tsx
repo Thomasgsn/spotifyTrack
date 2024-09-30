@@ -6,7 +6,7 @@ import { ThemeToggler } from "./ThemeToggler";
 import { Dispatch, SetStateAction } from "react";
 
 interface Props {
-  token: string;
+  token: string | null;
   userData: UserData | undefined;
   AUTH_ENDPOINT: string;
   CLIENT_ID: string;

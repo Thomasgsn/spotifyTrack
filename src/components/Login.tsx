@@ -6,7 +6,7 @@ interface Props {
   REDIRECT_URI: string;
   RESPONSE_TYPE: string;
   SCOPES: string;
-  token: string;
+  token: string | null;
   setToken: (value: string) => void;
 }
 

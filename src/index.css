@@ -1,4 +1,5 @@
 @import url(loader.css);
+@import url(./assets/font/circular-std/stylesheet.css);
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
 
 @tailwind base;
@@ -6,10 +7,10 @@
 @tailwind utilities;
 
 * {
-  overflow: hidden;
   margin: 0;
   padding: 0;
-  font-family: Montserrat, sans-serif;
+  overflow: hidden;
+  font-family: 'Circular Std', sans-serif;
 
   ::-webkit-scrollbar {
     display: none;
@@ -27,7 +28,7 @@ nav {
     @apply hover:scale-110 bg-[#fefefe] dark:bg-[#1f1f1f] h-3/5 w-[36.95px] rounded-full flex items-center justify-center;
 
     svg {
-      @apply text-textLight dark:text-textDark;
+      @apply fill-darkColor dark:fill-lightColor;
     }
   }
 
@@ -38,7 +39,7 @@ nav {
 
 main {
   .container {
-    @apply h-screen bg-bgLight dark:bg-bgDark rounded-lg p-4;
+    @apply bg-lightColor dark:bg-darkColor h-full rounded-lg p-4 overflow-scroll;
 
     a,
     p,
@@ -55,7 +56,7 @@ main {
     .spotify__btn {
       @apply bg-spotifyGreen rounded-full flex justify-center items-center;
       svg {
-        @apply text-bgLight fill-bgLight dark:text-bgDark dark:fill-bgDark !important;
+        @apply text-lightColor fill-lightColor dark:text-darkColor dark:fill-darkColor !important;
       }
     }
 
@@ -104,17 +105,17 @@ main {
       .term__btn {
         @apply flex justify-between mt-3;
         button {
-          @apply bg-bgLight dark:bg-[#212121] p-2 rounded-md w-[30%];
+          @apply bg-lightColor dark:bg-[#212121] p-2 rounded-md w-[30%];
 
           h3 {
-            @apply text-bgLight dark:text-[#b3b3b3] text-[.6vw] font-bold;
+            @apply text-lightColor dark:text-[#b3b3b3] text-[.6vw] font-bold;
           }
         }
       }
       .list__btn {
         @apply flex justify-start gap-3 mt-3;
         button {
-          @apply bg-bgLight dark:bg-[#212121] p-2 rounded-md;
+          @apply bg-lightColor dark:bg-[#212121] p-2 rounded-md;
 
           &.active {
             @apply bg-white dark:bg-[#313131];
@@ -131,7 +132,7 @@ main {
       }
 
       .coche {
-        @apply text-bgLight dark:text-bgDark !important;
+        @apply text-lightColor dark:text-darkColor !important;
       }
     }
   }

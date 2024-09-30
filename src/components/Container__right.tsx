@@ -3,7 +3,6 @@ import { FiSquare } from "react-icons/fi";
 import { CiBoxList } from "react-icons/ci";
 import { Dispatch, SetStateAction } from "react";
 import { IoSettingsOutline } from "react-icons/io5";
-import { LuRectangleHorizontal } from "react-icons/lu";
 import { RiCheckboxCircleFill } from "react-icons/ri";
 interface Props {
   setDuration: Dispatch<SetStateAction<"short" | "medium" | "long">>;
